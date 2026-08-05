@@ -40,4 +40,15 @@ app.get("/api", (req, res) => {
   res.json(filteredData)
 })
 
+app.get("/api/:field/:term", (req, res) => {
+  let filteredData = startups
+  const { field, term } = req.params
+
+  filteredData = filteredData.filter(
+    (data) => data[field].toLowerCase() === term.toLowerCase()
+  )
+
+  res.json(filteredData)
+})
+
 app.listen(PORT, () => console.log(`Connected to port ${PORT}`))
